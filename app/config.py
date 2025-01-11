@@ -11,7 +11,6 @@ class Settings(BaseSettings):
     DATABASE: str = os.getenv("DB_NAME")
     DB_USERNAME: str = os.getenv("DB_USERNAME")
     DB_PASSWORD: str = os.getenv("DB_PASSWORD")
-    DRIVER: str = "{ODBC Driver 18 for SQL Server}"
 
 
 settings = Settings()
