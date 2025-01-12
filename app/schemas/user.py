@@ -13,7 +13,7 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     # Inherits all fields from UserBase and adds none
-    pass
+    last_login: Optional[datetime] = None
     # Contains:
     # - email: str
     # - name: str
