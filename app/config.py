@@ -12,5 +12,9 @@ class Settings(BaseSettings):
     DB_USERNAME: str = os.getenv("DB_USERNAME")
     DB_PASSWORD: str = os.getenv("DB_PASSWORD")
 
+    JWT_SECRET = os.getenv("JWT_SECRET")
+    JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
+    ACCESS_TOKEN_EXPIRE_MINUTES = 1440  # TODO: Change to 30 before presentation
+
 
 settings = Settings()
