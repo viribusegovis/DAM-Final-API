@@ -5,3 +5,5 @@ python-dotenv==1.0.1
 uvicorn==0.34.0
 pydantic==2.10.5
 pymssql==2.3.2
+python-jose==3.3.0
+passlib==1.7.4
