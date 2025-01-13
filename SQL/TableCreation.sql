@@ -1,3 +1,12 @@
+DROP TABLE IF EXISTS recipe_ingredients;
+DROP TABLE IF EXISTS instructions;
+DROP TABLE IF EXISTS ingredients;
+DROP TABLE IF EXISTS recipe_categories;
+DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS users;
+
+
 CREATE TABLE users (
     user_id INT IDENTITY(1,1) PRIMARY KEY,
     email NVARCHAR(255) NOT NULL UNIQUE,
@@ -6,6 +15,13 @@ CREATE TABLE users (
     created_at DATETIME2 NOT NULL DEFAULT GETDATE(),
     last_login DATETIME2,
     is_active BIT DEFAULT 1
+);
+
+CREATE TABLE categories (
+    category_id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL UNIQUE,
+    description NVARCHAR(MAX),
+    image_url NVARCHAR(MAX)
 );
 
 CREATE TABLE recipes (
@@ -17,9 +33,18 @@ CREATE TABLE recipes (
     difficulty NVARCHAR(10) CHECK (difficulty IN ('FACIL', 'MEDIO', 'DIFICIL')),
     image_url NVARCHAR(MAX),
     author_id INT NOT NULL,
+    category_id INT NOT NULL,
     created_at DATETIME2 NOT NULL DEFAULT GETDATE(),
-    category NVARCHAR(100) NOT NULL,
-    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE
+);
+
+CREATE TABLE recipe_categories (
+    recipe_id INT NOT NULL,
+    category_id INT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE NO ACTION,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE,
+    PRIMARY KEY (recipe_id, category_id)
 );
 
 CREATE TABLE instructions (
@@ -44,4 +69,3 @@ CREATE TABLE recipe_ingredients (
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE,
     PRIMARY KEY (recipe_id, ingredient_id)
 );
-

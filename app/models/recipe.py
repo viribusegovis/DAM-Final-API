@@ -16,7 +16,6 @@ class Recipe(Base):
     image_url = Column(String)
     author_id = Column(Integer, ForeignKey("users.user_id", ondelete="CASCADE"))
     created_at = Column(DateTime, default=lambda: datetime.now(UTC))
-    category = Column(String(100), nullable=False)
     __table_args__ = (
         CheckConstraint(difficulty.in_(['FACIL', 'MEDIO', 'DIFICIL']), name='valid_difficulty'),
     )
