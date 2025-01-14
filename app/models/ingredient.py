@@ -9,5 +9,6 @@ class Ingredient(Base):
     __tablename__ = "ingredients"
     ingredient_id = Column(Integer, primary_key=True)
     name = Column(String(255), unique=True, nullable=False)
-    relationship('Recipe', secondary=RecipeIngredient.__table__, backref='Ingredient')
-
+    recipes = relationship('Recipe',
+                           secondary=RecipeIngredient.__table__,
+                           back_populates='ingredients')

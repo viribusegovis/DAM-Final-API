@@ -1,7 +1,10 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import BaseModel
+
+from app.schemas.category import CategoryResponse
+from app.schemas.ingredient import IngredientResponse
 
 
 class RecipeBase(BaseModel):
@@ -10,7 +13,6 @@ class RecipeBase(BaseModel):
     preparation_time: int
     servings: int
     difficulty: str
-    category: str
     image_url: Optional[str]
 
 
@@ -30,9 +32,10 @@ class RecipeCreate(RecipeBase):
 
 
 class RecipeResponse(RecipeBase):
-    # Inherits all fields from RecipeBase and adds:
     id: int
     created_at: datetime
+    categories: List[CategoryResponse]
+    ingredients: List[IngredientResponse]
 
     # Contains:
     # - title: str

@@ -13,5 +13,5 @@ class Category(Base):
     name = Column(String(100), nullable=False, unique=True)
     description = Column(String)
     image_url = Column(String)
-    recipes = relationship('Recipe', secondary=RecipeCategory.__table__, backref='Category')
+    recipes = relationship('Recipe', secondary=RecipeCategory.__table__, back_populates='categories')
 

@@ -18,12 +18,16 @@ class Recipe(Base):
     servings = Column(Integer, nullable=False)
     difficulty = Column(String(10))
     image_url = Column(String)
-    author_id = Column(Integer, ForeignKey("users.user_id", ondelete="CASCADE"))
+    author_id = Column(Integer, ForeignKey("users.user_id",
+                                           ondelete="CASCADE"))
     created_at = Column(DateTime, default=lambda: datetime.now(UTC))
-    categories = relationship('Category', secondary=RecipeCategory.__table__, backref='Recipe')
-    ingredients = relationship('Ingredient', secondary=RecipeIngredient.__table__, backref='Recipe')
+    categories = relationship('Category',
+                              secondary=RecipeCategory.__table__,
+                              back_populates='recipes')
+    ingredients = relationship('Ingredient',
+                               secondary=RecipeIngredient.__table__,
+                               back_populates='recipes')
 
-
-    __table_args__ = (
-        CheckConstraint(difficulty.in_(['FACIL', 'MEDIO', 'DIFICIL']), name='valid_difficulty'),
-    )
+    __table_args__ = (CheckConstraint(difficulty.in_(
+        ['FACIL', 'MEDIO', 'DIFICIL']),
+                                      name='valid_difficulty'), )
