@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from app.schemas.ingredient import IngredientResponse
+
 
 class RecipeIngredientBase(BaseModel):
     recipe_id: int
@@ -13,4 +15,7 @@ class RecipeIngredientCreate(RecipeIngredientBase):
 
 
 class RecipeIngredientResponse(RecipeIngredientBase):
-    pass
+    ingredient: IngredientResponse
+
+    class Config:
+        from_attributes = True

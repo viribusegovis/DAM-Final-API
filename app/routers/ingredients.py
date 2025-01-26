@@ -17,8 +17,8 @@ def get_ingredients(db: Session = Depends(get_db)):
     return ingredients
 
 
-@router.get("/top", response_model=List[IngredientResponse])
-def get_top_ingredients(limit: int = 10, db: Session = Depends(get_db)):
+@router.get("/top/{limit}", response_model=List[IngredientResponse])
+def get_top_ingredients(limit: int, db: Session = Depends(get_db)):
     top_ingredients = (
         db.query(Ingredient.ingredient_id, Ingredient.name)
         .join(RecipeIngredient)

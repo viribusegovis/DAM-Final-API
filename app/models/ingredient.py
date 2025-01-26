@@ -12,3 +12,4 @@ class Ingredient(Base):
     recipes = relationship('Recipe',
                            secondary=RecipeIngredient.__table__,
                            back_populates='ingredients')
+    recipe_ingredients = relationship("RecipeIngredient", back_populates="ingredient")

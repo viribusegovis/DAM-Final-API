@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Numeric
+from sqlalchemy.orm import relationship
 
 from app.models.base import Base
 
@@ -9,3 +10,4 @@ class RecipeIngredient(Base):
     ingredient_id = Column(Integer, ForeignKey("ingredients.ingredient_id", ondelete="CASCADE"), primary_key=True)
     amount = Column(Numeric(10, 2), nullable=False)
     unit = Column(String(50), nullable=False)
+    ingredient = relationship("Ingredient", back_populates="recipe_ingredients")
