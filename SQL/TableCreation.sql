@@ -1,3 +1,5 @@
+USE [db-dam-final]
+
 DROP TABLE IF EXISTS recipe_ingredients;
 DROP TABLE IF EXISTS instructions;
 DROP TABLE IF EXISTS ingredients;

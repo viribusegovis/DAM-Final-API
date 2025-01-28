@@ -1,3 +1,4 @@
+USE [db-dam-final]
 -- Inserir utilizadores de teste
 INSERT INTO users (email, password, name, created_at, last_login, is_active) VALUES
 ('joao@email.com', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY', 'João Silva', GETDATE(), GETDATE(), 1),
