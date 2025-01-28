@@ -8,6 +8,8 @@ connection_string = (
     f"mssql+pymssql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}"
     f"@{settings.SERVER}/{settings.DATABASE}"
 )
+
+
 engine = create_engine(connection_string)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

@@ -3,6 +3,7 @@ from typing import Optional, List
 
 from pydantic import BaseModel
 
+from app.schemas.recipe_ingredient import RecipeIngredientResponse
 from app.schemas.category import CategoryResponse
 from app.schemas.ingredient import IngredientResponse
 
@@ -35,7 +36,7 @@ class RecipeResponse(RecipeBase):
     id: int
     created_at: datetime
     categories: List[CategoryResponse]
-    ingredients: List[IngredientResponse]
+    ingredients: List[RecipeIngredientResponse]
 
     # Contains:
     # - title: str

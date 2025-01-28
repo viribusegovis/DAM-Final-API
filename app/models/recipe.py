@@ -24,9 +24,8 @@ class Recipe(Base):
     categories = relationship('Category',
                               secondary=RecipeCategory.__table__,
                               back_populates='recipes')
-    ingredients = relationship('Ingredient',
-                               secondary=RecipeIngredient.__table__,
-                               back_populates='recipes')
+    ingredients: Mapped[List["RecipeIngredient"]] = relationship(back_populates="recipe")
+
 
     __table_args__ = (CheckConstraint(difficulty.in_(
         ['FACIL', 'MEDIO', 'DIFICIL']),
