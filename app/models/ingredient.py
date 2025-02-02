@@ -11,4 +11,5 @@ class Ingredient(Base):
     __tablename__ = "ingredients"
     ingredient_id = Column(Integer, primary_key=True)
     name = Column(String(255), unique=True, nullable=False)
+    image_url = Column(String)
     recipes: Mapped[List["RecipeIngredient"]] = relationship(back_populates="ingredient")

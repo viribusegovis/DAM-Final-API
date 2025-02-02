@@ -4,6 +4,7 @@ from typing import List
 from sqlalchemy import Column, Integer, String, ForeignKey, CheckConstraint, DateTime
 from sqlalchemy.orm import declarative_base, relationship, Session, Mapped
 
+from app.models.instruction import Instruction
 from app.models.recipe_ingredient import RecipeIngredient
 from app.models.recipe_category import RecipeCategory
 from app.models.base import Base
@@ -25,6 +26,7 @@ class Recipe(Base):
                               secondary=RecipeCategory.__table__,
                               back_populates='recipes')
     ingredients: Mapped[List["RecipeIngredient"]] = relationship(back_populates="recipe")
+    instructions: Mapped[List["Instruction"]] = relationship(back_populates="recipe")
 
 
     __table_args__ = (CheckConstraint(difficulty.in_(
